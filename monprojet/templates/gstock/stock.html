@@ -1,0 +1,659 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+table {
+    min-width: max-content;
+    
+}
+
+
+ 
+
+
+
+         .container1 .content1{
+                            position: relative;
+                            margin-top: 15vh;
+                            min-height: 80vh;
+                            background: #f1f1f1;
+                        }
+                      .chercher{
+                            
+                            margin-top: 0px;
+                          
+                        }
+                        
+                        .container1 .content1 .content-2{
+                            min-height: 60vh;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                        }
+                        .container1 .content1 .content-2 .recent-payments{
+                            flex: 5;
+                            width:900px;
+                            background: white;
+                            margin: 0 25px 25px 25px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                            display: flex;
+                            flex-direction: column;
+                        
+                        }
+                       
+                        
+                        .title{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            border-bottom: 2px solid #999;
+                        }
+                        table th{
+                           color: white;
+                           background:#40E0D0;
+                           position: sticky;
+                           top: 0;
+                        }
+                        table{
+                         padding: 10px;
+                        }
+                       
+                        
+                        td,th{text-align: left;
+                            padding: 14px 14px
+                        }
+ table td a.edit {
+    color: #FFC107;
+}
+table td a.delete {
+    color: #F44336;
+}
+                       
+.title .btn i {
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
+}
+.title .btn span {
+    float: left;
+    margin-top: 2px;
+}
+.title .btn {
+  
+    float: right;
+    font-size: 13px;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    margin-right: 10px;
+    outline: none !important;
+}
+.btn {
+  
+  float: right;
+  font-size: 13px;
+  border: none;
+  min-width: 50px;
+  border-radius: 2px;
+  border: none;
+  margin-right: 10px;
+  outline: none !important;
+
+}
+
+.btn:hover{
+color: #3baea0;
+      background: rgb(255, 255, 255);
+     padding: 3px 8px;
+    border: 2px solid #3baea0;
+}
+.title .btn:hover {
+  
+    color: #3baea0;
+      background: rgb(255, 255, 255);
+     padding: 3px 8px;
+    border: 2px solid #3baea0;
+}
+
+                        .custom-checkbox {
+    position: relative;
+}
+.custom-checkbox input[type="checkbox"] {    
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+.custom-checkbox label:before{
+    width: 18px;
+    height: 18px;
+}
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: inherit;
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    border-color:#10f3d9;
+    background:#10f3d9;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+    color: #b8b8b8;
+    cursor: auto;
+    box-shadow: none;
+    background: #ddd;
+}
+/* Modal styles */
+.modal .modal-dialog {
+    max-width: 500px;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+    padding: 20px 30px;
+}
+.modal .modal-content {
+    border-radius: 3px;
+}
+.modal .modal-footer {
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+    display: inline-block;
+}
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #dddddd;
+}
+.table-container1 {
+    padding-bottom: 6px;
+    height:100%;
+overflow: scroll; 
+ max-height: 60vh;
+ height: 300px;
+
+  }
+  .container1 .content1 .cards{
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container1 .content1 .cards .card{
+    width: 245px;
+    height: 60px;
+    background: white;
+    margin: 0px 10px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.container1 .content1 .cards .card input{
+border: 2px solid paleturquoise;
+font-style: oblique;
+font-size: medium;
+}
+.container1 .content1{
+    position: relative;
+    margin-top: 15vh;
+    min-height:85vh;
+}
+
+h3{color: #999;}
+        .qte{
+   display: inline-block;
+   margin-right: 78px;
+}
+.pv{
+   display: inline-block;
+}
+.dz{
+   display: inline-block;
+   margin-right: 78px;
+}
+.pa{
+   display: inline-block;
+}
+.sm{
+   display: inline-block;
+   margin-right: 78px;
+}
+.dp{
+   display: inline-block;
+
+}
+           
+@media screen and (max-width:940px) {
+	
+	.container1 .content1 .content-2 .recent-payments{ 
+	width: 350px;	
+	}  }                    
+    </style>
+    <div class="container1">
+
+        <div class="content1">
+
+
+            <form class="chercher" >
+
+               
+                <div class="form-group ch" style="display: flex;">
+                    
+                    <input  name="q"  class="form-control" type="search" placeholder="Rechercher..." style="width: 500px;
+                    margin-left: 26px;display: inline;">
+                     
+
+                    <a href="{% url 'stock' %}">  <img class="logo" width="35px" src="{% static 'image/refresh.png' %}"  alt="logo"></a>						
+        
+                </div>
+            </form>
+
+            <div class="cards">
+
+                <div class="card">
+                    <div class="box">
+                      <form   method="POST" action="{% url 'tri_par_designation' %}">
+                            {% csrf_token %}
+                            <input  class="card"  type="submit" value="Tri Par Alphabie">
+                        </form>
+                        
+                    </div>
+                    <div class="icon-case">
+                        <img src="" alt="">
+                    </div>
+                </div>
+        
+                <div class="card">
+                    <div class="box">
+                        <form   method="POST" action="{% url 'tri_par_categorie' %}">
+                            {% csrf_token %}
+                            <input class="card"  type="submit" value="Tri Par Categorie">
+                        </form>
+                    </div>
+                    <div class="icon-case">
+                        <img src="" alt="">
+                    </div>
+                </div>
+        
+                <div class="card">
+                    <div class="box">
+                        <form   method="POST" action="{% url 'date_exp' %}">
+                            {% csrf_token %}
+                            <input class="card"  type="submit" value="Medicaments Perimes">
+                        </form>
+                      
+                    </div>
+                    <div class="icon-case">
+                        <img src="" alt="">
+                    </div>
+                </div>
+        
+                <div class="card">
+                    <div class="box">
+                        <form   method="POST" action="{% url 'qte_min' %}">
+                            {% csrf_token %}
+                            <input class="card"  type="submit" value="Medicaments En Ripture">
+
+                        </form>
+                        
+                    </div>
+                    <div class="icon-case">
+                        <img src="" alt="">
+                    </div>
+                </div>
+        
+
+
+
+              
+        
+        
+            </div>
+
+
+
+
+
+
+            
+
+             <div class="content-2">
+                <div class="recent-payments">
+
+                    <div class="title">
+                       <h2>Medicaments en stock</h2>
+                       <div class="col-sm-6">
+                        <a  href="#ajoutermedicament" class="btn" data-toggle="modal"><i class="material-icons">&#xE147;</i><span >Ajouter Medicament</span> </a>
+                        <a href="#deletefournisseurModal-{{forloop.counter}}" class="btn " data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer tout</span></a>				
+                       </div>
+                   </div>
+
+<div class="table-container1">
+                 
+
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                    </span>
+                </th>
+                <th >Actions</th>
+                <th >id_med</th>
+                <th>CODE BARRE</th>
+                <th>DESIGNATION</th>
+                <th>CATEGORIE</th>
+                <th>DATE PEREMPTION</th>
+                <th>Forme</th>
+                <th>DCI</th>
+                <th>Lieu de Stockage</th>
+                <th>Qantite</th>
+                <th>Dosage</th>
+                <th>Prix Vente</th>
+                <th>Prix Achat</th>
+                 <th>Stock min</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for x in meds %}
+            <tr class="h">
+                <td>
+                    <span  class="custom-checkbox">
+                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                        <label for="checkbox1"></label>
+                    </span>
+                </td>
+                <td class="actions h">
+                    <a href="#editEmployeeModal-{{forloop.counter}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="modifier">&#xE254;</i></a>
+                    <a href="#deleteEmployeeModal-{{forloop.counter}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="supprimer">&#xE872;</i></a>
+                </td>
+                <td>{{x.id}}</td>
+
+                <td>{{x.CodeBarre}}</td>
+                <td>{{x.designation}}</td>
+                <td>{{x.categorie}}</td>
+                <td>{{x.date_permeotion}}</td>
+                <td>{{x.forme}}</td>
+                <td>{{x.DCI}}</td>
+                <td>{{x.lieu_med}}</td>
+                <td>{{x.qte}}</td>
+                <td>{{x.dosage}}</td>
+                <td>{{x.prix_vente}}</td>
+                <td>{{x.prix_achat}}</td>
+                <td>{{x.stock_min}}</td>
+
+                
+            </tr>
+    
+            {% endfor  %}
+        </tbody>
+</table>
+
+
+
+ </div>          
+                 </div>
+                    
+
+                
+                </div>
+         </div>
+
+    </div>
+       
+
+<!-- ajoutermedicament -->
+<div id="ajoutermedicament" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action=" {% url 'addmed' %}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">						
+                    <h4 style="color:blueviolet" class="modal-title">Ajouter medicament</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                
+                <div class="modal-body">
+                                    
+                    <div class="form-group">
+                        <label>Code Barre</label>
+                        <input  name="cb" type="number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <input name="Designation" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categorie</label>
+                        <input name="Categorie" type="text" class="form-control" required>
+                    </div>
+                        
+
+                    <div class="form-group">
+                        <label>Forme</label>
+                        <input name="Forme" type="text" class="form-control" required>
+                    </div>		
+                    <div class="form-group">
+                        <label>DCI</label>
+                        <input  name="DCI" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lieu de Stockage</label>
+                        <input name="lieustock" type="text" class="form-control" required>
+                    </div>
+                        <div class="form-group">
+                            <div class="qte">
+                            <label>Quantite</label> <br>
+                            <input name="qte" type="number" class="" required>
+                        </div>
+                           <div class="pv">
+                            <label>Prix Vente</label><br>
+                            <input name="pv" type="number" class="" required>
+                        </div>
+                        <br><br>
+                           <div class="dz">
+                            <label>Dosage</label><br>
+                            <input name="dz" type="number" class="" required>
+                        </div>
+                        <div class="pa">
+                            <label>Prix Achat</label><br>
+                            <input name="pa" type="number" class="" required>
+                        </div>
+                        <br><br>
+                        <div class="sm">
+                            <label>Stock min</label><br>
+                            <input name="sm" type="number" class="" required>
+                        </div> 
+                        <div class="dp">
+                            <label>Date Peremption</label><br>
+                            <input name="dp"  type="date" class="" required >
+                        </div>
+                       
+                        </div>		
+                                        
+                </div>
+               
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-info" data-dismiss="modal" value="Annuler">
+                    <input type="submit" class="btn btn-success" value="Ajouter">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- modifier medicamenr -->
+{% for x in meds %}
+<div id="editEmployeeModal-{{forloop.counter}}" class="modal fade" frm>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/update/{{x.id}}" method="post">
+                {% csrf_token %}
+                <div class="modal-header">						
+                    <h4 style="color: blueviolet;" class="modal-title">Modifier Medicament</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <div class="form-group">
+                        <label>Code Barre</label>
+                        <input name="cb" value="{{x.CodeBarre}}" type="number" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Designation</label>
+                        <input name="Designation" value="{{x.designation}}" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Categorie</label>
+                        <input  name="Categorie" value="{{x.categorie}}" type="text" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Forme</label>
+                        <input name="Forme" value="{{x.forme}}" type="text" class="form-control" required>
+                    </div>		
+                    <div class="form-group">
+                        <label>DCI</label>
+                        <input  name="DCI" value="{{x.DCI}}" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Lieu de Stockage</label>
+                        <input  name="lieustock" value="{{x.lieu_med}}" type="text" class="form-control" required>
+                    </div>
+                        <div class="form-group">
+                            <div class="qte">
+                            <label>Quantite</label> <br>
+                            <input name="qte" value="{{x.qte}}" type="number" class="" required>
+                        </div>
+                           <div class="pv">
+                            <label>Prix Vente</label><br>
+                            <input name="pv" value="{{x.prix_vente}}" type="number" class="" required>
+                        </div>
+                        <br><br>
+                           <div class="dz">
+                            <label>Dosage</label><br>
+                            <input name="dz" value="{{x.dosage}}"type="number" class="" required>
+                        </div>
+                        <div class="pa">
+                            <label>Prix Achat</label><br>
+                            <input name="pa" value="{{x.prix_achat}}" type="number" class="" required>
+                        </div>
+                        <br><br>
+                        <div class="sm">
+                            <label>Stock min</label><br>
+                            <input  name="sm"value="{{x.stock_min}}" type="number" class="" required>
+                        </div>
+                        <div class="dp">
+                            <label>Date Peremption</label><br>
+                            <input name="dp" value="{{x.date_permeotion}}" type="date" class="" required >
+                        </div>
+                       
+                        </div>		
+                                        
+                </div>
+               
+                <div class="modal-footer">
+                    <input type="button"class="btn btn-info" data-dismiss="modal" value="Annuler">
+                    <input type="submit" class="btn btn-success" value="Enregistrer">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+
+        <!-- Delete Modal HTML -->
+        {% for x in meds %}
+
+<div id="deleteEmployeeModal-{{forloop.counter}}" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">						
+                    <h4 class="modal-title">Supprimer Medicament</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">					
+                    <p>vous voulez vraiment supprimer ce medicament?</p>
+                    <p class="text-warning"><small></small></p>
+                </div>
+                <div class="modal-footer">
+                    <input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+                    <a href="/delete/{{x.id}}" type="submit" class="btn btn-danger" >Supprimer</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+</body>
+<script>$(document).ready(function(){
+// Activate tooltip
+$('[data-toggle="tooltip"]').tooltip();
+
+// Select/Deselect checkboxes
+var checkbox = $('table tbody input[type="checkbox"]');
+$("#selectAll").click(function(){
+    if(this.checked){
+        checkbox.each(function(){
+            this.checked = true;                        
+        });
+    } else{
+        checkbox.each(function(){
+            this.checked = false;                        
+        });
+    } 
+});
+checkbox.click(function(){
+    if(!this.checked){
+        $("#selectAll").prop("checked", false);
+    }
+});
+});</script>
+</html>
+{% endblock content %}

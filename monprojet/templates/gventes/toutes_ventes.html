@@ -1,0 +1,114 @@
+<form method="post" action="{% url 'ajouter_vente' %}">
+  {% csrf_token %}
+
+  <label for="medicament">Médicament :</label>
+  <select name="medicament" id="medicament" onchange="updateFields()">
+
+      <option value="">Choisir un médicament</option>
+
+    {% for med in medicaments %}
+    <option value="{{ med.pk }}" data-qte="{{ med.qte }}" data-expiration="{{ med.date_permeotion }}" data-prix="{{ med.prix_vente }}">{{ med.designation }}</option>
+    {% endfor %}
+  </select>
+ 
+  <label for="qte_en_stock">Quantité en stock :</label>
+  <input type="text" id="qte_en_stock" readonly>
+
+  <label for="date_expiration">Date d'expiration :</label>
+  <input type="text" id="date_expiration" readonly>
+
+  <label for="prix_vente">Prix de vente :</label>
+  <input type="text" id="prix_vente" readonly>
+
+  <label for="qte_achetee">Quantité achetée :</label>
+  <input type="number" name="qte_achetee" id="qte_achetee">
+
+  <button type="button" onclick="ajouterMedicament()">Ajouter</button>
+
+  <table id="table_ventes">
+    <thead>
+      <tr>
+        <th>Nom médicament</th>
+        <th>Prix vente</th>
+        <th>Date expiration</th>
+        <th>Quantité en stock</th>
+        <th>Quantité achetée</th>
+        <th>Prix total</th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+    </tbody>
+  </table>
+
+  <input type="hidden" id="medications_input" name="medications" value="">
+  <button type="submit">Confirmer l'opération de vente</button>
+</form>
+
+<script>
+var medications = []; // Array to store added medications
+
+function updateFields() {
+  var selectedOption = document.getElementById("medicament").options[document.getElementById("medicament").selectedIndex];
+  document.getElementById("qte_en_stock").value = selectedOption.getAttribute("data-qte");
+  document.getElementById("date_expiration").value = selectedOption.getAttribute("data-expiration");
+  document.getElementById("prix_vente").value = selectedOption.getAttribute("data-prix");
+}
+
+function ajouterMedicament() {
+  var selectedOption = document.getElementById("medicament").options[document.getElementById("medicament").selectedIndex];
+  var nomMedicament = selectedOption.text;
+  var prixVente = selectedOption.getAttribute("data-prix");
+  var dateExpiration = selectedOption.getAttribute("data-expiration");
+  var qteEnStock = parseInt(selectedOption.getAttribute("data-qte"));
+  var qteAchetee = parseInt(document.getElementById("qte_achetee").value);
+  var prixTotal = parseFloat(prixVente) * parseFloat(qteAchetee);
+
+  // Vérifier si la quantité achetée ne dépasse pas la quantité en stock
+  if (qteAchetee <= qteEnStock) {
+    qteEnStock -= qteAchetee; // Diminuer la quantité en stock
+
+    // Mettre à jour la quantité en stock dans l'option sélectionnée
+    selectedOption.setAttribute("data-qte", qteEnStock);
+
+    var medication = {
+      nomMedicament: nomMedicament,
+      prixVente: prixVente,
+      dateExpiration: dateExpiration,
+      qteEnStock: qteEnStock,
+      qteAchetee: qteAchetee,
+      prixTotal: prixTotal
+    };
+
+    medications.push(medication);
+
+    updateTable(medications); // Update the table
+  } else {
+    alert("La quantité achetée dépasse la quantité en stock.");
+  }
+}
+
+function updateTable(medications) {
+  var tableBody = document.getElementById("table_body");
+  tableBody.innerHTML = "";
+
+  medications.forEach(function (medication) {
+    var newRow = "<tr>";
+    newRow += "<td>" + medication.nomMedicament + "</td>";
+    newRow += "<td>" + medication.prixVente + "</td>";
+    newRow += "<td>" + medication.dateExpiration + "</td>";
+    newRow += "<td>" + medication.qteEnStock + "</td>";
+    newRow += "<td>" + medication.qteAchetee + "</td>";
+    newRow += "<td>" + medication.prixTotal + "</td>";
+    newRow += "</tr>";
+
+    tableBody.innerHTML += newRow;
+  });
+
+  // Update the hidden input field with the JSON string of medications
+  document.getElementById("medications_input").value = JSON.stringify(medications);
+}
+</script>
+
+
+
+

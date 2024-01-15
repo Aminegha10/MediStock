@@ -1,0 +1,282 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+       
+
+    *{padding: 0;
+    margin: 0;
+box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+min-height: 100vh;
+}
+a{text-decoration: none;}
+
+
+.container{
+position: absolute;
+right: 0;
+width: 80vw;
+height: 100vh;
+background: #f1f1f1;
+}
+
+
+
+
+.btn{
+
+background-color: #3baea0;
+color: white;
+padding: 5px 10px;
+text-align: center;
+
+}
+.btn:hover{
+
+color: #3baea0;
+background: rgb(255, 255, 255);
+padding: 3px 8px;
+border: 2px solid #3baea0;
+
+}
+.container .content_2{
+position: relative;
+margin-top: 10vh;
+min-height: 90vh;
+background: #f1f1f1;
+}
+
+h3{color: #999;}
+.container .content-2{
+min-height: 60vh;
+display: flex;
+justify-content: space-around;
+align-items: flex-start;
+flex-wrap: wrap;
+margin-top: 100px;
+}
+
+
+.container .content-2 .recent-payments{
+    width: 700px;
+background: white;
+min-height: 50vh;
+margin: 0 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+height: 500px;
+}
+.container .content-2 .new-student{
+min-height: 50vh;
+flex: 2;
+background: white;
+margin: 0 25px 25px 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+
+}
+
+.title{
+display: flex;
+align-items: center;
+justify-content: space-around;
+padding: 15px 10px;
+border-bottom: 2px solid #999;
+}
+table{
+padding: 10px;
+}
+th,td{text-align: left;
+padding: 8px;
+}
+.container  .content-2 .recent-students table td:nth-child(1) img {
+width: 40px;
+height: 40px;
+}
+
+
+
+@media screen and (max-width:940px) {
+
+.container  .content-2 .recent-payments table th:nth-child(2),
+.container  .content-2 .recent-payments table th:nth-child(2){ 
+    display: none;
+}
+
+}
+
+            /* Styles pour la forme */
+            form {
+                padding: 20px;
+               
+                
+            }
+        
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 16px;
+font-size: medium;            }
+        
+            select, input[type="text"], input[type="number"],input[type="date"], textarea {
+                width: 253px;
+                margin-bottom: 10px;
+                padding: 7px;
+
+
+               
+            
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            }
+        
+            textarea {
+                height: 50px;
+            }
+        
+            button[type="submit"] {
+                padding: 10px 20px;
+                background-color: #3baea0;
+                color: white;
+                border: none;
+                cursor: pointer;
+                
+               
+            }
+        
+            /* Styles spécifiques aux éléments */
+            #id_adresse_fournisseur,
+            #id_qualite_fournisseur,
+            #quantite_stock {
+                background-color: #f2f2f2;
+                cursor: not-allowed;
+            }
+          form .form1{display:inline;
+            float: left;
+           margin-right: 35px;
+           border-right:2px solid #999;
+           padding-right: 30px;
+           
+        }
+        .titleform{color: #3baea0;
+        padding: 20px 0 0 20px;}
+        option{font-size: 18px;}
+       
+        </style>
+         
+           
+        </style>
+        
+
+<body>
+    
+
+<div class="container">
+
+    <div class="content-2">
+     <div class="recent-payments">
+
+      <h2 class="titleform">Creer une facture:</h2>
+        <form method="POST">
+            {% csrf_token %}
+        <div class="form1">
+            <label for="patient">Client:</label>
+            <select name="patient" id="patient"required>
+                <option value="">Choisir un client</option>
+                {% for patient in pats %}
+                <option value="{{ patient.id }}" data-adresse="{{ patient.adress }}" >{{ patient.nom }}</option>
+                {% endfor %}
+            </select>
+        
+          <p style="color: #999;">si le client n'pas encore enregistrer cliquer ici: </p>
+          
+          <a style="color: aqua;" href="{% url 'clients' %}">Ajouter client</a>
+            <br>
+    
+          
+            <br>
+            <label for="id_date_facture">Date de facture:</label>
+            <input  type="date" name="date_facture" id="id_date_facture" required>
+        
+           
+            <br>
+        </div>
+        <div class="form2">
+            <label for="medicament">Médicament:</label>
+            <select name="medicament" id="medicament"required>
+                <option value="">Choisir un médicament</option>
+                {% for medicament in meds %}
+                <option value="{{ medicament.id }}" data-prix="{{ medicament.prix_vente }}">{{ medicament.designation }}</option>
+                {% endfor %}
+            </select>
+        
+            <br>
+        
+            <label for="prix_vente">Prix de vente:</label>
+            <input type="number" name="prix_vente" id="prix_vente" readonly required>
+        
+            <br>
+        
+            <label for="quantite_demandee">Quantité demandée:</label>
+            <input type="number" name="quantite_demandee" id="quantite_demandee"required min="1">
+            <br>
+        
+        </div>
+        <div style="
+        margin-top: 100px;
+        text-align: center;">
+            <button type="submit" class="btn">Enregistrer la facture</button>
+        </div>
+        </form>
+        
+  
+
+
+     </div>
+    
+    </div>
+</div>
+
+
+<script>
+    // Récupérer les éléments HTML
+    var selectPatient = document.getElementById('patient');
+    var inputAdressePatient = document.getElementById('id_adresse_patient');
+
+    // Écouter l'événement de changement de sélection du fournisseur
+    selectPatient.addEventListener('change', function() {
+        var selectedOption = selectPatient.options[selectPatient.selectedIndex];
+        inputAdressePatient.value = selectedOption.getAttribute('data-adresse');
+    });
+
+    // Récupérer les éléments HTML
+    var selectMedicament = document.getElementById('medicament');
+    var inputQteStock = document.getElementById('prix_vente');
+    var quantiteStockInput = inputQteStock;
+
+    // Écouter l'événement de changement de sélection du médicament
+    selectMedicament.addEventListener('change', function() {
+        var selectedOption = selectMedicament.options[selectMedicament.selectedIndex];
+        inputQteStock.value = selectedOption.getAttribute('data-prix');
+    });
+
+   
+       
+</script>
+</body>
+</html>
+{% endblock content %}

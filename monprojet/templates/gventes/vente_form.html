@@ -1,0 +1,304 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+       
+
+    *{padding: 0;
+    margin: 0;
+box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+min-height: 100vh;
+}
+a{text-decoration: none;}
+
+
+.container{
+position: absolute;
+right: 0;
+width: 80vw;
+height: 100vh;
+background: #f1f1f1;
+}
+
+
+
+
+.btn{
+
+background-color: #3baea0;
+color: white;
+padding: 5px 10px;
+text-align: center;
+
+}
+.btn:hover{
+
+color: #3baea0;
+background: rgb(255, 255, 255);
+padding: 3px 8px;
+border: 2px solid #3baea0;
+
+}
+.container .content_2{
+position: relative;
+margin-top: 10vh;
+min-height: 90vh;
+background: #f1f1f1;
+}
+
+h3{color: #999;}
+.container .content-2{
+min-height: 60vh;
+display: flex;
+justify-content: space-around;
+align-items: flex-start;
+flex-wrap: wrap;
+margin-top: 85px;
+}
+
+
+.container .content-2 .recent-payments{
+flex: 3;
+background: white;
+min-height: 50vh;
+margin: 0 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+height: 500px;
+}
+.container .content-2 .new-student{
+min-height: 50vh;
+flex: 6;
+background: white;
+margin: 0 25px 25px 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+height: 500px;
+
+
+}
+
+.title{
+justify-content: space-around;
+padding: 15px 10px 0px ;
+border-bottom: 2px solid #999;
+}
+table{
+padding: 10px;
+}
+th,td{text-align: left;
+padding: 8px;
+}
+.container  .content-2 .recent-students table td:nth-child(1) img {
+width: 40px;
+height: 40px;
+}
+
+
+
+@media screen and (max-width:940px) {
+
+.container  .content-2 .recent-payments table th:nth-child(2),
+.container  .content-2 .recent-payments table th:nth-child(2){ 
+    display: none;
+}
+
+}
+
+            /* Styles pour la forme */
+            form {
+                padding: 20px;
+               
+                
+            }
+        
+            label {
+                display: block;
+                margin-bottom: 5px;
+                font-size: 16px;
+font-size: medium;            }
+        
+            select, input[type="text"], input[type="number"],input[type="date"], textarea {
+                width: 253px;
+                margin-bottom: 10px;
+                padding: 7px;
+
+
+               
+            
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            }
+        
+            textarea {
+                height: 50px;
+            }
+        
+            button[type="submit"] {
+                padding: 10px 20px;
+                background-color: #3baea0;
+                color: white;
+                border: none;
+                cursor: pointer;
+                
+               
+            }
+        
+            /* Styles spécifiques aux éléments */
+            #prix_vente,
+            #date_expiration,
+            #qte_en_stock{
+                background-color: #f2f2f2;
+                cursor: not-allowed;
+            }
+          form {
+          text-align: center;
+        }
+        .titleform{color: #3baea0;
+        padding: 20px 0 0 20px;}
+        option{font-size: 18px;}
+       
+
+
+        .table-container1 {
+    height: 440px;
+    overflow: auto;
+
+
+  }
+        </style>
+         
+           
+       
+        
+
+<body>
+    
+
+<div class="container">
+
+    <div class="content-2">
+     <div class="recent-payments">
+
+      <h2 class="titleform">Enregistrer une vente:</h2>
+       
+      <form method="post" action="{% url 'ajouter_vente' %}">
+        {% csrf_token %}
+        
+        <label for="medicament">Médicament :</label>
+        <select name="medicament" id="medicament" onchange="updateFields()"required>
+          <option value="">Choisir un médicament</option>
+          {% for med in medicaments %}
+          <option value="{{ med.pk }}" data-qte="{{ med.qte }}" data-expiration="{{ med.date_permeotion }}" data-prix="{{ med.prix_vente }}">{{ med.designation }}</option>
+          {% endfor %}
+        </select>
+         
+        <label for="qte_en_stock">Quantité en stock :</label>
+        <input type="text" id="qte_en_stock" readonly>
+        
+        <label for="date_expiration">Date d'expiration :</label>
+        <input type="text" id="date_expiration" readonly>
+        
+        <label for="prix_vente">Prix de vente :</label>
+        <input type="text" id="prix_vente" readonly >
+      
+        <label for="qte_achetee">Quantité achetée :</label>
+        <input type="number" name="qte_achetee" id="qte_achetee"required>
+        
+        
+        <br>
+        
+        <br>
+        <button type="submit" onclick="ajouterMedicament()">Confirmer l'opération de vente</button>
+      </form>
+      
+
+
+     </div>
+     <div class="new-student">
+    <div class="title">
+        <h2>La liste de ventes:</h2>
+
+
+        
+
+        <form method="GET" action="{% url 'recherche_ventes' %}">
+          <div style="display: flex; align-items: center;">
+              <label for="date_debut" style="margin-right: 10px;">Date de début:</label>
+              <input type="date" name="date_debut" required style="margin-right: 10px;width: 110px;">
+      
+              <label for="date_fin" style="margin-right: 10px;">Date de fin:</label>
+              <input type="date" name="date_fin" required style="margin-right: 20px;width: 110px;">
+      
+              <button  type="submit">Rechercher</button>
+          </div>
+      </form>
+      
+
+
+      </div>
+    <div class="table-container1">
+    <table>
+      <thead>
+        <tr>
+          <th>Nom médicament</th>
+          <th>Quantité vendue</th>
+          <th>Prix de vente</th>
+          <th>Prix total</th>
+          <th>Date vente</th>
+          <th>Heure vente</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for vente in ventes %}
+        <tr>
+          <td>{{ vente.medicament.designation }}</td>
+          <td>{{ vente.quantite_vendue }}</td>
+          <td>{{vente.medicament.prix_vente}}</td>
+          <td>{{ vente.prix_total }}</td>
+          <td>{{ vente.date_vente }}</td>
+          <td>{{ vente.heure_vente }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+     </div>
+    </div>
+    </div>
+</div>
+
+
+
+</body>
+<script>
+  
+  function updateFields() {
+    var selectedOption = document.getElementById("medicament").options[document.getElementById("medicament").selectedIndex];
+    document.getElementById("qte_en_stock").value = selectedOption.getAttribute("data-qte");
+    document.getElementById("date_expiration").value = selectedOption.getAttribute("data-expiration");
+    document.getElementById("prix_vente").value = selectedOption.getAttribute("data-prix");
+  }
+  
+  function ajouterMedicament() {
+    if (qteAchetee>qteEnStock) {
+      alert("La quantité achetée dépasse la quantité en stock.");
+
+  }}
+  </script>
+  
+</html>
+{% endblock content %}

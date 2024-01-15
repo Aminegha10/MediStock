@@ -1,0 +1,71 @@
+<form method="post" action="{% url 'ajouter_vente' %}">
+  {% csrf_token %}
+  
+  <label for="medicament">Médicament :</label>
+  <select name="medicament" id="medicament" onchange="updateFields()">
+    <option value="">Choisir un médicament</option>
+    {% for med in medicaments %}
+    <option value="{{ med.pk }}" data-qte="{{ med.qte }}" data-expiration="{{ med.date_permeotion }}" data-prix="{{ med.prix_vente }}">{{ med.designation }}</option>
+    {% endfor %}
+  </select>
+   
+  <label for="qte_en_stock">Quantité en stock :</label>
+  <input type="text" id="qte_en_stock" readonly>
+  
+  <label for="date_expiration">Date d'expiration :</label>
+  <input type="text" id="date_expiration" readonly>
+  
+  <label for="prix_vente">Prix de vente :</label>
+  <input type="text" id="prix_vente" readonly>
+
+  <label for="qte_achetee">Quantité achetée :</label>
+  <input type="number" name="qte_achetee" id="qte_achetee">
+  
+  
+  
+  
+  
+  <button type="submit" onclick="ajouterMedicament()">Confirmer l'opération de vente</button>
+</form>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom médicament</th>
+      <th>Quantité vendue</th>
+      <th>Prix de vente</th>
+      <th>Prix total</th>
+      <th>Date vente</th>
+      <th>Heure vente</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for vente in ventes %}
+    <tr>
+      <td>{{ vente.medicament.designation }}</td>
+      <td>{{ vente.quantite_vendue }}</td>
+      <td>{{vente.medicament.prix_vente}}</td>
+      <td>{{ vente.prix_total }}</td>
+      <td>{{ vente.date_vente }}</td>
+      <td>{{ vente.heure_vente }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  
+  function updateFields() {
+    var selectedOption = document.getElementById("medicament").options[document.getElementById("medicament").selectedIndex];
+    document.getElementById("qte_en_stock").value = selectedOption.getAttribute("data-qte");
+    document.getElementById("date_expiration").value = selectedOption.getAttribute("data-expiration");
+    document.getElementById("prix_vente").value = selectedOption.getAttribute("data-prix");
+  }
+  
+  function ajouterMedicament() {
+    if (qteAchetee>qteEnStock) {
+      alert("La quantité achetée dépasse la quantité en stock.");
+
+  }}
+  </script>
+  

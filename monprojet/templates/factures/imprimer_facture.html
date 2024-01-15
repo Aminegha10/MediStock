@@ -1,0 +1,131 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Facture </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+          text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+
+        .info {
+text-align: left;
+justify-content: left;  }
+        .info-row {
+            text-align: right;  
+          justify-content: left;      }
+
+        
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f0f0f0;
+        }
+
+        .footer {
+            text-align: center;
+            justify-content: left;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        span {
+            font-size: 14px;
+        }
+        .gr  {
+            font-size: 17px;
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+     <span class="gr">  Informations sur la facture :</span><br>
+     <span> Numéro de facture :</span> {{ facture.id }} <br>
+     <span> Date de facture:</span> {{ facture.date_facture }} <br>
+      
+    </div>
+
+    <div class="info">
+    <span> Pharmacie ABC </span> <br>
+      <span>  Adresse de la pharmacie</span> <br>
+      <span>Téléphone :</span>  0654432112 <br>
+      <span> Email : </span> info@pharmacie-ABC.com
+      </div>
+
+        <div class="info-row">
+           
+       <span>Client :</span>     {{ facture.patient }}<br>
+       <span>Adress :</span>     {{ facture.patient.adress }}<br>
+       <span>Téléphone :</span>  {{ facture.patient.tel }}<br>
+        
+        </div>
+
+   
+    <h2>Médicaments inclus :</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom médicament</th>
+          <th>Quantité demandée</th>
+          <th>Prix de vente</th>
+          <th>Prix total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for medicament_facture in medicaments_facture %}
+          <tr>
+            <td>{{ medicament_facture.medicament.designation }}</td>
+            <td>{{ medicament_facture.quantite_demandee }}</td>
+            <td>{{ medicament_facture.medicament.prix_vente }}</td>
+            <td>{{ medicament_facture.prix_total }}</td>
+          </tr>
+        {% endfor %}
+    
+        {% for medicament_facture in medicament_list %}
+          <tr>
+            <td>{{ medicament_facture.medicament.designation }}</td>
+            <td>{{ medicament_facture.quantite_demandee }}</td>
+            <td>{{ medicament_facture.medicament.prix_vente }}</td>
+            <td></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+<tfoot>
+  <tr style="color: aqua;font-size: large;">
+    <td colspan="3">Prix total</td>
+    <td>{{ total_prix }}</td>
+  </tr>
+</tfoot>
+</table>
+
+
+    <div class="footer">
+        <p>Merci d'avoir choisi Pharmacie ABC. Si vous avez des questions concernant cette commande, veuillez nous contacter aux coordonnées mentionnées ci-dessus.</p>
+    </div>
+    <p>Signature:</p>
+</body>
+</html>

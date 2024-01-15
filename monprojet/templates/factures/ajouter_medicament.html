@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<style> form {
+    padding: 20px; 
+}
+h1{color: white;
+}
+body {
+  background: linear-gradient(45deg, #ccc 0%, #ccc 50%, #3baea0 50%, #3baea0 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+select, input[type="text"], input[type="number"],input[type="date"], textarea {
+    width: 300px;
+    margin-bottom: 10px;
+    padding: 10px;
+
+
+   
+
+border: 1px solid #ccc;
+border-radius: 4px;
+}
+
+option {font-size: 18px;}
+textarea {
+    height: 50px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #3baea0;
+    color: white;
+    border: none;
+    cursor: pointer;
+    
+   
+}form
+
+/* Styles spécifiques aux éléments */
+#id_adresse_fournisseur,
+#id_qualite_fournisseur,
+#quantite_stock {
+    background-color: #f2f2f2;
+    cursor: not-allowed;
+}
+.form ,h1 {display: flex;justify-content: center;}
+form {display:inline;
+float: left;
+margin-right: 35px;
+padding-right: 30px;
+border: 1px solid #ccc;
+            border-radius: 5px;
+            background:white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.19);
+
+justify-content: center;}
+.titleform{color: #3baea0;
+padding: 20px 0 0 20px;}
+
+</style>
+
+<body>
+    
+
+
+<h1>Ajouter un médicament supplémentaire à la facture {{ facture.id }}</h1>
+<div class="form">
+<form method="POST">
+    {% csrf_token %}
+
+    
+
+    <label for="medicament">Médicament:</label>
+    <select name="medicament" id="medicament"required>
+        <option value="">Choisir un médicament</option>
+        {% for medicament in meds %}
+        <option value="{{ medicament.id }}" data-qte="{{ medicament.qte }}">{{ medicament.designation }}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+
+    <label for="quantite_stock">Quantité en stock:</label>
+    <input type="number" name="quantite_stock" id="quantite_stock" readonly required>
+
+    <br>
+
+    <label for="quantite_demandee">Quantité demandée:</label>
+    <input type="number" name="quantite_demandee" id="quantite_demandee"required min="1">
+    <br>
+
+    
+
+    <button type="submit">Ajouter le médicament</button>
+</form>
+
+</div>
+
+
+</body>
+
+<script>
+     // Récupérer les éléments HTML
+     var selectMedicament = document.getElementById('medicament');
+    var inputQteStock = document.getElementById('quantite_stock');
+    var quantiteStockInput = inputQteStock;
+
+    // Écouter l'événement de changement de sélection du médicament
+    selectMedicament.addEventListener('change', function() {
+        var selectedOption = selectMedicament.options[selectMedicament.selectedIndex];
+        inputQteStock.value = selectedOption.getAttribute('data-qte');
+    });
+</script>
+
+
+</html>

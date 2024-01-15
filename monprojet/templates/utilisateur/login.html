@@ -1,0 +1,137 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/c26cd2166c.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+    <title>login</title>
+</head>
+<body>
+   <style>
+    *{padding: 0;
+    margin: 0;
+    box-sizing: border-box;}
+    
+   
+.login {height: 80vh;
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    display: inline-flex;
+    border-radius: 20px;
+    box-shadow: 1px 1px 28px 8px rgba(0,0,0,0.75);
+    -webkit-box-shadow:1px 1px 28px 8px rgba(0,0,0,0.75);
+    -moz-box-shadow:1px 1px 28px 8px rgba(0,0,0,0.75);
+}
+.pic{height: 100%;
+    width: 50%;
+    
+}
+.pic img{height: 100%;
+    width: 100%;
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    
+}
+h3{ font-family: 'Inter', sans-serif;
+}
+h1{ font-family: 'Satisfy', cursive; 
+color: aqua;
+}
+.form{ height: 100%;
+    width: 50%;
+    padding: 30px;
+}
+.input-field{height: 40px;
+width: 80%;
+border: 1px solid rgb(202,198,200);
+outline: none;
+padding: 5px 40px;
+margin-top: 10px;
+font-size: medium;
+border-radius: 20px;}
+.icon{position: absolute;
+padding: 20px;
+columns: rgb(165,157,157);}
+button{height: 40px;
+width: 80%;
+border: none;
+outline: none;
+margin: 30px 0;
+border-radius: 20px;
+cursor: pointer;
+color: white;
+font-weight: bold;
+background: #00aaa0;
+transform: all 0.4w;
+}
+button:hover{background:#3baea0;}
+.input-fild{height: 40px;
+border: 1px solid rgb(202,198,200);
+outline: none;
+padding: 5px 40px;
+margin-top: 10px;
+font-size: medium;
+border-radius: 7px;
+}
+ .label{ 
+    font-family: 'Inter', sans-serif; 
+font-size: large;
+font-weight: bold;}
+   
+</style>
+
+<div class="login">
+    <div class="pic">
+        <img src="{% static 'image/ph1.jpg' %}"   width="450px" height="450px"  alt="">
+    </div>
+    <div class="form">
+        <h3>Bienvenue</h3>
+        <h1>MediStock</h1>
+        <form id="login-form" method="post">
+            {% csrf_token %}
+
+<div class="input-icon">
+   <i class="fas fa-user icon"></i>
+<input type="text" class="input-field" name="username" placeholder="Nom d'utilisateur">
+</div>
+
+<div class="input-icon">
+    <i class="fas fa-lock icon"></i>
+<input type="password" class="input-field" name="password" placeholder="Mot de passe">
+</div>
+<br>
+<div class="input-icon">
+    <label class="label" for="">grade</label><br>
+    <select  class="input-fild" name="grade" id="grade">
+        <option value="gerant">gerant</option>
+        <option value="employe">employe</option>
+        
+    </select>
+    {% if error_message %}
+    <p style="color: red;" class="error-message">{{ error_message }}</p>
+{% endif %}
+</div>
+
+
+<button type="submit">Se Connecter</button>
+    </div>
+</div>    
+</form>        
+</body>
+</html>

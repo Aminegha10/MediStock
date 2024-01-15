@@ -1,0 +1,125 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Commande auprès de fournisseurs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .header {
+          text-align: center;
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            
+        }
+
+        .info {
+text-align: left;
+justify-content: left;  }
+        .info-row {
+            text-align: right;  
+          justify-content: left;      }
+
+        
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #000;
+            padding: 8px;
+        }
+
+        .table th {
+            background-color: #f0f0f0;
+        }
+
+        .footer {
+            text-align: center;
+            justify-content: left;
+            margin-top: 40px;
+            font-size: 14px;
+        }
+        span {
+            font-size: 14px;
+        }
+        .gr  {
+            font-size: 17px;
+            color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+     <span class="gr">  Informations sur la commande :</span><br>
+     <span> Numéro de commande :</span> {{ commande.id }} <br>
+     <span> Date de commande:</span> {{ commande.date_commande }} <br>
+     <span> Adresse de livraison :</span> {{ commande.adresse_livraison }}
+      
+    </div>
+
+    <div class="info">
+    <span> Pharmacie ABC </span> <br>
+      <span>  Adresse de la pharmacie</span> <br>
+      <span>Téléphone :</span>  0654432112 <br>
+      <span> Email : </span> info@pharmacie-ABC.com
+      </div>
+
+        <div class="info-row">
+           
+       <span>Fournisseur :</span>     {{ commande.fournisseur }}<br>
+       <span>Adress :</span>     {{ commande.fournisseur.adress }}<br>
+       <span>Téléphone :</span>  {{ commande.fournisseur.tel }}<br>
+        
+        </div>
+
+   
+    <h2>Médicaments inclus :</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Médicament</th>
+          <th>Quantité demandée</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for medicament_commande in medicaments_commande %}
+          <tr>
+            <td>{{ medicament_commande.medicament.designation }}</td>
+            <td>{{ medicament_commande.quantite_demandee }}</td>
+            <td>{{ medicament_commande.description }}</td>
+          </tr>
+        {% endfor %}
+    
+        {% for medicament_commande in medicament_list %}
+          <tr>
+            <td>{{ medicament_commande.medicament.designation }}</td>
+            <td>{{ medicament_commande.quantite_demandee }}</td>
+            <td>{{ medicament_commande.description }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    
+
+    <div class="footer">
+      Nous vous remercions par avance pour votre collaboration et votre assistance dans la livraison rapide de ces médicaments. Si vous avez des questions supplémentaires ou besoin de plus d'informations, veuillez nous contacter aux coordonnées mentionnées ci-dessus.
+
+<p>Cordialement,</p> 
+    </div>
+    <p>Signature:</p>
+</body>
+</html>

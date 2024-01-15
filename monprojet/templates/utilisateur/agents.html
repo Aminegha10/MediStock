@@ -1,0 +1,467 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <style>
+table {
+    min-width: max-content;
+    
+}
+
+
+ 
+
+
+
+         .container1 .content1{
+                            position: relative;
+                            margin-top: 15vh;
+                            min-height: 80vh;
+                            background: #f1f1f1;
+                        }
+                      .chercher{
+                            
+                            margin-top: 0px;
+                          
+                        }
+                        
+                        .container1 .content1 .content-2{
+                            min-height: 60vh;
+                            display: flex;
+                            justify-content: space-around;
+                            align-items: flex-start;
+                            flex-wrap: wrap;
+                        }
+                        .container1 .content1 .content-2 .recent-payments{
+                            min-height: 40vh;
+                            flex: 5;
+                            width:900px;
+                            background: white;
+                            margin: 0 25px 25px 25px;
+                            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+                            display: flex;
+                            flex-direction: column;
+                        
+                        }
+                       
+                        
+                        .title{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            border-bottom: 2px solid #999;
+                        }
+                        table{
+                            margin-left: 10px;
+                         padding: 10px;
+                        }
+                       
+                        
+                        td,th{text-align: left;
+                            padding: 8px 20px 
+                        }
+ table td a.edit {
+    color: #FFC107;
+}
+table td a.delete {
+    color: #F44336;
+}
+                       
+.title .btn i {
+    float: left;
+    font-size: 21px;
+    margin-right: 5px;
+}
+.title .btn span {
+    float: left;
+    margin-top: 2px;
+}
+.title .btn {
+  
+    float: right;
+    font-size: 13px;
+    border: none;
+    min-width: 50px;
+    border-radius: 2px;
+    border: none;
+    margin-right: 10px;
+    outline: none !important;
+
+}
+
+.title .btn:hover {
+  
+    color: #3baea0;
+      background: rgb(255, 255, 255);
+     padding: 3px 8px;
+    border: 2px solid #3baea0;
+}
+
+                        .custom-checkbox {
+    position: relative;
+}
+.custom-checkbox input[type="checkbox"] {    
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+.custom-checkbox label:before{
+    width: 18px;
+    height: 18px;
+}
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: inherit;
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    border-color:#10f3d9;
+    background:#10f3d9;
+}
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    border-color: #fff;
+}
+.custom-checkbox input[type="checkbox"]:disabled + label:before {
+    color: #b8b8b8;
+    cursor: auto;
+    box-shadow: none;
+    background: #ddd;
+}
+/* Modal styles */
+.modal .modal-dialog {
+    max-width: 400px;
+}
+.modal .modal-header, .modal .modal-body, .modal .modal-footer {
+    padding: 20px 30px;
+}
+.modal .modal-content {
+    border-radius: 3px;
+}
+.modal .modal-footer {
+    background: #ecf0f1;
+    border-radius: 0 0 3px 3px;
+}
+.modal .modal-title {
+    display: inline-block;
+}
+.modal .form-control {
+    border-radius: 2px;
+    box-shadow: none;
+    border-color: #dddddd;
+}
+.table-container1 {
+overflow:auto ;
+height: 300px;
+  }
+
+  .btn {
+  
+  float: right;
+  font-size: 13px;
+  border: none;
+  min-width: 50px;
+  border-radius: 2px;
+  border: none;
+  margin-right: 10px;
+  outline: none !important;
+
+}
+
+.btn:hover{
+color: #3baea0;
+      background: rgb(255, 255, 255);
+     padding: 3px 8px;
+    border: 2px solid #3baea0;
+}
+           
+                        
+    </style>
+    <div class="container1">
+
+        <div class="content1">
+
+            <form class="chercher" >
+
+               
+                <div class="form-group ch" style="display: flex;">
+                    
+                    <input  name="q"  class="form-control" type="search" placeholder="Rechercher...." style="width: 500px;
+                    margin-left: 26px;display: inline;">
+                     
+
+                    <a href="{% url 'agents' %}">  <img class="logo" width="35px" src="{% static 'image/refresh.png' %}"  alt="logo"></a>						
+        
+                </div>
+            </form>
+
+             <div class="content-2">
+                <div class="recent-payments">
+
+                    <div class="title">
+                       <h2>Liste des Agents</h2>
+                       <div class="col-sm-6">
+                        <a  href="{% url 'register' %}" class="btn" data-toggle="modal"><i class="material-icons">&#xE147;</i><span >Ajouter Agent</span> </a>
+                        <a href="#deletefournisseurModal-{{forloop.counter}}" class="btn " data-toggle="modal"><i class="material-icons">&#xE15C;</i> <span>Supprimer tout</span></a>				
+                       </div>
+                   </div>
+
+<div class="table-container1">
+    <table class="
+     table-hover">
+        <thead>
+            <tr>
+                <th>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="selectAll">
+                        <label for="selectAll"></label>
+                    </span>
+                </th>
+                <th>Nom</th>
+                <th>prenom</th>
+                <th>Addresse</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>grade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profile in profiles%}
+
+            <tr>
+                <td>
+                    <span class="custom-checkbox">
+                        <input type="checkbox" id="checkbox1" name="options[]" value="1">
+                        <label for="checkbox1"></label>
+                    </span>
+                </td>
+                <td>{{ profile.user.last_name }}</td>
+                <td>{{ profile.user.first_name }}</td>
+                <td>{{ profile.adress }}</td>
+                <td>{{ profile.user.email }}</td>
+                <td>{{ profile.tel }}</td>
+               <td>{{ profile.grade }}</td>
+
+                
+                
+                <td>
+                    <a href="#editagentModal-{{forloop.counter}}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="modifier">&#xE254;</i></a>
+                    <a href="#deleteagentsModal-{{forloop.counter}}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="supprimer">&#xE872;</i></a>
+                </td>
+            </tr>
+            {% endfor  %}
+
+           </tbody>
+    </table>
+    
+ </div>          
+                 </div>
+                    
+
+                
+                </div>
+         </div>
+
+    </div>
+       
+
+<!-- Add Modal HTML -->
+	<!--<div id="addEmployeeModal" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action=" {% url 'add' %}" method="post">
+					<div class="modal-header">	
+                        {% csrf_token %}
+					
+						<h4 class="modal-title">Ajouter Fournisseur</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<div class="form-group">
+							<label>Nom</label>
+							<input name="nom" type="text" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>Nom</label>
+							<input name="prenom" type="text" class="form-control" required>
+						</div>
+                        <div class="form-group">
+							<label>Email</label>
+							<input name="email" type="email" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label>Addresse</label>
+							<textarea name="adress" class="form-control" required></textarea>
+						</div>
+                        <div class="form-group">
+							<label>Telephone</label>
+							<input name="tel" type="number" class="form-control" required>
+						</div>		
+                        <div class="form-group">
+							<label>Qualite de Service</label>
+                            <select  class="form-control" name="qualite" id="qualite">
+                                <option value="faible">Faible</option>
+                                <option value="moyenne">Moyenne</option>
+                                <option value="Bien">Bien</option>
+                                <option value="parfite">Parfaite</option>
+
+
+
+                            </select>
+						</div>		
+									
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+						<input type="submit" class="btn btn-success" value="Ajouter">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Edit Modal HTML -->
+    {% for profile in profiles %}
+
+	<div id="editagentModal-{{forloop.counter}}" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/updateagent/{{profile.id}}" method="post">
+                    {% csrf_token %}
+
+					<div class="modal-header">						
+						<h4 class="modal-title">Modifier Agent</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						   
+                        <div class="form-group">
+                            <label for="username">Nom d'utilisateur:</label>
+                            <input id="username" name="username" value="{{profile.user.username}}" type="text" class="form-control" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="first_name">Prénom:</label>
+                            <input type="text" id="first_name" name="first_name" value="{{profile.user.first_name}}"class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Nom de famille:</label>
+                            <input type="text" id="last_name" name="last_name"value="{{profile.user.last_name}}"class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" name="email" value="{{profile.user.email}}"class="form-control" required>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="tel">Numero de telephone:</label>
+                            <input type="number" id="tel" name="tel"value="{{profile.tel}}"class="form-control" required>
+                        </div>
+                       
+                        <div class="form-group">
+                            <label for="adress">Address</label>
+                            <input name="adress" value="{{profile.adress}}" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                        {{ form2.grade }}
+                    </div>
+
+
+                    </div>
+						
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+						<input type="submit" class="btn btn-info" value="Enregistrer">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    {% endfor %}
+
+	<!-- Delete Modal HTML -->
+    {% for profile in profiles%}
+	<div id="deleteagentsModal-{{forloop.counter}}" class="modal fade">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form>
+					<div class="modal-header">						
+						<h4 class="modal-title">Supprimer Agent</h4>
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					</div>
+					<div class="modal-body">					
+						<p>vous voulez vraiment supprimer cet agent?</p>
+						<p class="text-warning"></p>
+					</div>
+					<div class="modal-footer">
+						<input type="button" class="btn btn-default" data-dismiss="modal" value="Annuler">
+						<a href="/deleteagents/{{profile.id}}" type="submit" class="btn btn-danger" >Supprimer</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+    {% endfor  %}
+
+</body>
+<script>$(document).ready(function(){
+	// Activate tooltip
+	$('[data-toggle="tooltip"]').tooltip();
+	
+	// Select/Deselect checkboxes
+	var checkbox = $('table tbody input[type="checkbox"]');
+	$("#selectAll").click(function(){
+		if(this.checked){
+			checkbox.each(function(){
+				this.checked = true;                        
+			});
+		} else{
+			checkbox.each(function(){
+				this.checked = false;                        
+			});
+		} 
+	});
+	checkbox.click(function(){
+		if(!this.checked){
+			$("#selectAll").prop("checked", false);
+		}
+	});
+});</script>
+</html>
+
+{% endblock content %}

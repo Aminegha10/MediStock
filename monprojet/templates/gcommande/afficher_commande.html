@@ -1,0 +1,297 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+       
+ p span{color: #3baea0;
+ font-size: large;
+}
+    *{padding: 0;
+    margin: 0;
+box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+min-height: 100vh;
+}
+a{text-decoration: none;}
+li{list-style: none;}
+
+h1,h2{color: #444;}
+
+
+.container{
+position: absolute;
+right: 0;
+width: 80vw;
+height: 100vh;
+background: #f1f1f1;
+}
+.container .header{
+position: fixed;
+top: 0;
+right: 0;
+width: 80vw;
+height: 10vh;
+background: white;
+display: flex;
+align-items: center;
+justify-content: center;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+z-index: 1;
+
+}
+.container .header .nav{width: 90%;
+display: flex;
+align-items: center;
+}
+.container .header .nav .search{
+flex: 3;
+display: flex;
+justify-content: center;
+}
+.container .header .nav .search button{
+width: 40px;
+height: 40px;
+border: none;
+display: flex;
+align-items: center;
+justify-content: center;}
+.container .header .nav .search button img{
+width: 30px;
+height: 30px;
+}
+
+
+
+.container .header .nav .user .img-case {
+position: relative; 
+width: 50px;
+height: 50px;
+}
+.container .header .nav .user .img-case img{
+position: absolute; 
+top: 0;
+left: 0;
+width: 100%;
+
+}
+.btn{
+
+background-color: #3baea0;
+color: white;
+padding: 5px 10px;
+text-align: center;
+
+}
+.btn:hover{
+
+color: #3baea0;
+background: rgb(255, 255, 255);
+padding: 3px 8px;
+border: 2px solid #3baea0;
+
+}
+.container .content{
+position: relative;
+margin-top: 10vh;
+min-height: 90vh;
+background: #f1f1f1;
+}
+.container .content .cards{
+padding: 10px 15px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-wrap: wrap;
+justify-content: center;}
+.container .content .cards .card{
+width: 800px;
+height: 150px;
+background: white;
+display: flex;
+justify-content: space-around;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+text-align: center;
+}
+.annuler{margin-top: 5px;
+  margin-bottom: 5px;
+}
+ .card2{
+width: 300px;
+height: 50px;
+background: white;
+margin: 0px 10px ;
+display: flex;
+align-items: center;
+justify-content: space-around;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+font-size: 18px;
+color: #3baea0;
+border: 2px solid #3baea0;}
+h3{color: #999;}
+.container .content .content-2{
+min-height: 60vh;
+display: flex;
+justify-content: space-around;
+align-items: flex-start;
+flex-wrap: wrap;
+}
+.container .content .content-2 .recent-payments{
+min-height: 40vh;
+width: 800px;
+background: white;
+margin: 0 25px 0px 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+}
+
+
+
+
+.title{
+display: flex;
+align-items: center;
+justify-content: space-around;
+padding: 15px 10px;
+border-bottom: 2px solid #999;
+}
+.side-menu li img{width: 30px;height: 30px;}
+table{
+padding: 10px;
+}
+th,td{text-align: left;
+padding: 8px;
+}
+.container .content .content-2 .recent-students table td:nth-child(1) img {
+width: 40px;
+height: 40px;
+}
+
+.commande h1{color: lightcoral;
+padding: 10px 0 0 0px;
+text-align: center;
+}
+.pc {background: lightcoral;
+padding: 10px;}
+.annuler{display: flex;
+justify-content: center;}
+@media screen and (max-width:536px) {
+
+.container .content .cards {
+justify-content: center;}}
+</style>
+</head>
+<body>
+  <div class="container">
+    
+<div class="content">
+  <div class="commande">
+  <h1>Commande Num: {{ commande.id }}</h1>
+</div>
+    <div class="cards">
+
+        <div class="card">
+            <div class="box">
+             
+              <div class="title">
+              <h2>Informations sur la commande :</h2>
+            </div>
+            <br>
+              <p><span> Fournisseur :</span> {{ commande.fournisseur }}</p>
+              <p><span>Adresse de livraison :</span> {{ commande.adresse_livraison }}</p>
+              <p><span>Date de commande:</span> {{ commande.date_commande }}</p>
+              
+            </div>
+           
+        </div>
+
+       
+     
+
+    </div>
+        <div class="content-2">
+<div class="recent-payments">
+    <div class="title">
+      <h2>Médicaments inclus :</h2>
+
+        <a href="{% url 'ajouter_medicament' commande_id=commande.id %}" class="btn">Ajouter medicament</a>
+        
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Médicament</th>
+          <th>Quantité demandée</th>
+          <th>Forme</th>
+          <th>Description</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        {% for medicament_commande in medicaments_commande %}
+          <tr>
+            <td>{{ medicament_commande.medicament.designation }}</td>
+            <td>{{ medicament_commande.quantite_demandee }}</td>
+            <td>{{ medicament_commande.medicament.forme }}</td>
+            <td>{{ medicament_commande.description }}</td>
+          </tr>
+        {% endfor %}
+    
+        {% for medicament_commande in medicament_list %}
+          <tr>
+            <td>{{ medicament_commande.medicament.designation }}</td>
+            <td>{{ medicament_commande.quantite_demandee }}</td>
+            <td></td>
+            <td>{{ medicament_commande.description }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+
+
+<div class="annuler">
+ 
+<a class="card2" href="{% url 'imprimer_commande' commande_id=commande.id %}" target="_blank">Imprimer</a>
+
+
+
+  {% if not commande.annulee %}
+        <form method="post" action="">
+            {% csrf_token %}
+            <button class="card2" type="submit" name="annuler_commande">Annuler la commande</button>
+        </form>
+  {% else %}
+        <p>La commande a été annulée.</p>
+  {% endif %}
+
+</div>  
+  </div>
+ 
+</div>
+
+
+
+ </div> 
+ 
+
+
+
+
+
+
+
+</body>
+</html>
+{% endblock content %}

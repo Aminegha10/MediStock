@@ -1,0 +1,272 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+       
+
+        *{padding: 0;
+        margin: 0;
+    box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+    min-height: 100vh;
+}
+a{text-decoration: none;}
+
+h1,h2{color: #444;}
+
+.container{
+    position: absolute;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+.container .header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+
+
+.btn{
+   
+    background-color: #3baea0;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+
+}
+.btn:hover{
+   
+   color: #3baea0;
+   background: rgb(255, 255, 255);
+   padding: 3px 8px;
+   border: 2px solid #3baea0;
+
+}
+.container .content{
+    position: relative;
+    margin-top: 10vh;
+    min-height: 90vh;
+    background: #f1f1f1;
+}
+.container .content .cards{
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container .content .cards .card{
+    padding:5px ;
+    width: 245px;
+    height: 145px;
+    background: white;
+    margin: 20px 10px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+h3{color: #999;}
+.container .content .content-2{
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.container .content .content-2 .recent-payments{
+    min-height: 50vh;
+    flex: 4;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container .content .content-2 .new-student{
+flex: 3;
+background: white;
+min-height: 50vh;
+margin: 0 25px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+}
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-bottom: 2px solid #999;
+}
+.side-menu li img{width: 30px;height: 30px;}
+table{
+ padding: 10px;
+}
+th,td{text-align: left;
+    padding: 8px;
+}
+.container .content .content-2 .recent-students table td:nth-child(1) img {
+    width: 40px;
+    height: 40px;
+}
+
+
+
+@media screen and (max-width:940px) {
+    
+    .container .content .content-2 .recent-payments table th:nth-child(2),
+    .container .content .content-2 .recent-payments table th:nth-child(2){ 
+        display: none;
+    }
+}
+
+    
+    @media screen and (max-width:536px) {
+    
+    .container .content .cards {
+justify-content: center;}}
+    </style>
+   
+ <div class="container">
+  
+<div class="content">
+    <div class="cards">
+
+        <div class="card">
+            <div class="box">
+                <h1>{{nombre_medicaments_expires }}</h1>
+                <h3>medicaments expires</h3>
+            </div>
+            <div class="icon-case">
+                <img width="50px" src="{% static 'image/expered.png' %}" alt="">
+            </div>
+        </div>
+        <div class="card">
+            <div class="box">
+                <h1>{{nombre_medicaments_rupture}}</h1>
+                <h3>medicaments en rupture</h3>
+            </div>
+            <div class="icon-case">
+                <img width="50px" src="{% static 'image/rupture.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <h1>{{frns}}</h1>
+                <h3>fournisseurs</h3>
+            </div>
+            <div class="icon-case">
+                <img src="{% static 'image/suppliers.png' %}" alt="">
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="box">
+                <h1>{{nombre_categories}}</h1>
+                <h3>categories</h3>
+            </div>
+            <div class="icon-case">
+                <img src="{% static 'image/categories.png' %}" alt="">
+            </div>
+        </div>
+
+      
+
+
+
+    </div>
+        <div class="content-2">
+<div class="recent-payments">
+    <div class="title">
+        <h2>les medicaments plus vendues</h2>
+        <a href="{% url 'ajouter_vente' %}" class="btn">voir tout</a>
+    </div>
+    <table id="table_ventes">
+        <thead>
+          <tr>
+            <th>Nom médicament</th>
+            <th>categorie</th>
+            <th>Quantité vendue</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for vente in ventes %}
+          <tr>
+            <td>{{ vente.medicament__designation }}</td>
+            <td>{{ vente.medicament__categorie }}</td>
+            <td>{{ vente.total_vendu }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    
+</div>
+<div class="new-student">
+    <div class="title">
+        <h2>nouvelles commandes</h2>
+        <a href="{% url 'tout_commandes' %}" class="btn">voir tout</a>
+    </div>
+    <table>
+        <tr>
+            <th>Num commande</th>
+            <th>date commande </th>
+            <th>fournisseur</th>
+            
+        </tr>
+        {% for x in cmd %}
+
+        <tr>
+            <td> {{x.id }}</td>
+            <td>{{x.date_commande}}</td>
+            <td>{{x.fournisseur}}</td>
+        </tr>
+        {% endfor  %}
+    </table>
+</div>
+       
+    </div>
+</div>
+
+
+
+ </div> 
+ 
+
+
+
+
+
+</body>
+</html>
+{% endblock content %}

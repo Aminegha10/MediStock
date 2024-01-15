@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire d'Enregistrement</title>
+    <style>
+        body {
+  background: linear-gradient(45deg, #ccc 0%, #ccc 50%, #3baea0 50%, #3baea0 100%);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+        .row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .col-md-12 {
+            width: 400px;
+            max-width: 500px;
+            padding: 0px 40px 20px 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background:white;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.19);
+
+            
+        }
+h1 {color: white;
+text-align: center; }
+        h2 {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+span  {
+           color: red;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+       label span{
+font-size: 13px;  
+color: grey;      }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+        option{font-size: 17px; }
+        select,
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #3baea0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: white;
+            border: 2px solid #3baea0;
+            color: #3baea0;
+        }
+
+
+        textarea {
+            height: 30px; /* Modifiez la valeur pour définir la hauteur souhaitée */
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 100%;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulaire d'inscription</h1>
+    <div class="row">
+        <div class="col-md-12">
+            {% if regestred %}
+            <h2>Vous êtes déjà enregistré</h2>
+            {% endif  %}
+            <form method="post" action="" onsubmit="return validateForm()">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">Nom d'utilisateur:</label>
+                    <input type="text" id="username" name="username"required>
+                </div>
+                <div class="form-group">
+                    <label for="first_name">Prénom:</label>
+                    <input type="text" id="first_name" name="first_name"required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Nom de famille:</label>
+                    <input type="text" id="last_name" name="last_name"required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email"required>
+                </div>
+                <div class="form-group">
+                    <label for="password1">Mot de passe(<span> 
+                        Règle de validation : "Le mot de passe doit contenir au moins 8 caractères,
+                         ne peut pas être trop similaire à vos autres informations personnelles,
+                         ne peut pas être un mot de passe couramment utilisé et ne peut pas être entièrement numérique."</span>)
+                        :</label>
+                        
+                    <input type="password" id="password1" name="password1"required>
+                    <span id="error-message"></span>
+                   
+                </div>
+                <div class="form-group">
+                    <label for="password2">Confiramtion de mot de passe:</label>
+                    <input type="password" id="password2" name="password2"required>
+                    <span id="error-message2"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="tel">Numero de telephone:</label>
+                    <input type="number" id="tel" name="tel"required>
+                </div>
+                <div class="form-group">
+                    <label for="adress">Adresse:</label>
+                    <textarea  name="adress" id="adress" cols="50" rows="10"required></textarea>
+                </div>
+                <div class="form-group">
+                 <label for="adress">Grade:</label>
+                {{ form2.grade}}
+            </div>
+                <input type="submit" name="" value="Enregistrer">
+            </form>
+        </div>
+    </div>
+</body>
+<script>
+ function validateForm() {
+    var password = document.getElementById("password1").value;
+    var confirmPassword = document.getElementById("password2").value;
+
+    var errorMessage = document.getElementById("error-message");
+    var errorMessage2 = document.getElementById("error-message2");
+
+      
+     
+// Vérification de la correspondance du mot de passe et de la confirmation du mot de passe
+
+    var personalInfo = ["username","last_name", "first_name"];  // Remplacez par les informations personnelles réelles
+       for (var i = 0; i < personalInfo.length; i++) {
+           if (password.toLowerCase().includes(personalInfo[i].toLowerCase())) {
+              errorMessage.innerText = "Votre mot de passe ne peut pas être trop similaire à vos autres informations personnelles.";
+              return false;
+           }
+       }
+
+  // Vérification de la longueur minimale
+  if (password.length < 8) {
+    errorMessage.innerText = "Votre mot de passe doit contenir au moins 8 caractères.";
+    return false;
+  }
+
+  // Vérification de l'utilisation d'un mot de passe couramment utilisé
+  var commonPasswords = ["password", "123456", "qwerty"];  // Ajoutez d'autres mots de passe couramment utilisés si nécessaire
+  if (commonPasswords.includes(password.toLowerCase())) {
+    errorMessage.innerText = "Votre mot de passe ne peut pas être un mot de passe couramment utilisé.";
+    return false;
+  }
+
+  // Vérification de la présence de caractères numériques
+  if (/^\d+$/.test(password)) {
+    errorMessage.innerText = "Votre mot de passe ne peut pas être entièrement numérique.";
+    return false;
+  }
+
+
+
+  if (password !== confirmPassword) {
+    errorMessage2.innerText = "La confirmation du mot de passe ne correspond pas.";
+    return false;
+  }
+    
+  // Le mot de passe est valide, réinitialisez le message d'erreur et soumettez le formulaire
+  errorMessage.innerText = "";
+  return true;
+}
+
+
+ 
+     
+    </script>
+    
+</html>

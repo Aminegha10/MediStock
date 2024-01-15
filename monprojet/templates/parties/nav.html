@@ -1,0 +1,386 @@
+{% load static%}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
+	
+	
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Satisfy&display=swap" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
+
+
+</head>
+<body>
+	<style>
+	   
+
+		*{padding: 0;
+		margin: 0;
+	box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+	min-height: 100vh;
+}
+a{text-decoration: none;}
+li{list-style: none;}
+.side-menu{position: fixed;
+	background: #3baea0;
+	width: 20vw;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+h1,h2{color: #444;}
+
+.side-menu .brand-name{
+	height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.side-menu li a {
+	font-size: 20px;
+	padding: 10px 40px;
+	color: white;
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+}
+.side-menu li a:hover{background: white;
+color: #3baea0;}
+
+.side-menu li a.active{
+	background: white;
+color: #3baea0;
+}
+
+.container1{
+	position: absolute;
+	right: 0;
+	width: 80vw;
+	height: 100vh;
+	background: #f1f1f1;
+}
+.container1 .header1{
+	position: fixed;
+	top: 0;
+	right: 0;
+	width: 80vw;
+	height: 10vh;
+	background: white;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	z-index: 1;
+
+}
+.container1 .header1 .nav1{width: 90%;
+	display: flex;
+align-items: center;
+}
+.container1 .header1 .nav1 .search{
+	flex: 3;
+	display: flex;
+
+}
+.container1 .header1 .nav1 .search button{
+	width: 40px;
+	height: 40px;
+	border: none;
+display: flex;
+align-items: center;
+justify-content: center;}
+.container1 .header1 .nav1 .search button img{
+	width: 30px;
+	height: 30px;
+}
+.container1 .header1 .nav1 .search input[type="text"]{
+	border: none;
+	background: #f1f1f1;
+	padding: 10px;
+	width: 50%;
+
+}
+.container1 .header1 .nav1 .user{
+	flex: 1;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+.container1 .header1 .nav1 .user .img-case {
+  position: relative; 
+  width: 50px;
+  height: 50px;
+}
+.container1 .header1 .nav1 .user .img-case img{
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%;
+
+}
+.btn{
+   
+	background-color: #3baea0;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+
+}
+.side-menu li img{width: 30px;height: 30px;}
+
+.user .btn:hover{
+   
+   color: #3baea0;
+   background: rgb(255, 255, 255);
+   padding: 3px 8px;
+   border: 2px solid #3baea0;
+
+}
+#nameapp{font-family: 'Satisfy', cursive; 
+color: aqua;
+font-weight: bold;                       
+}
+
+
+@media screen and (max-width:1050px) {
+	.side-menu li a{
+		font-size: 18px;
+	}
+}
+@media screen and (max-width:940px) {
+	.side-menu li span{
+	   display: none;
+	}
+	.side-menu {
+align-items: center;
+}
+.side-menu li img{
+	  width: 30px;
+	  height: 30px;
+	}
+	.container1 .content1 .content-2 .recent-payments table th:nth-child(2),
+	.container1 .content1 .content-2 .recent-payments table th:nth-child(2){ 
+		display: none;
+	}
+
+
+	.side-menu li a:hover{ background: #3baea0;
+padding: 8px 38px;
+border:2px solid white}
+}
+	@media screen and (max-width:536px) {
+	.brand-name h1{
+	   font-size: 16px;
+	}
+	.container1 .content1 .cards {
+justify-content: center;}}
+
+
+	</style>
+   
+   <style>
+    .notification-icon {
+      position: relative;
+      display: inline-block;
+      margin-right: 10px;
+    }
+  
+    .notification-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      width: 20px;
+      height: 20px;
+      background-color:crimson;
+	  
+      border-radius: 50%;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-align: center;
+      line-height: 20px;
+    }
+  
+    .notification-container {
+      display: none;
+      position: absolute;
+      top: 30px;
+      right: 0;
+      width: 300px;
+      background-color:  #40E0D0;
+      border: 1px solid #ddd;
+      padding: 10px;
+      z-index: 9999;
+    }
+  
+    .notification-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+  
+    .notification-list li {
+      margin-bottom: 10px;
+      padding: 5px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+    }
+  </style>
+ <div class="side-menu">
+	<div class="brand-name">
+	  <h1 id="nameapp">MediStock</h1>
+	</div>
+	<ul>
+		
+		<li><a href="{% url 'stock' %}"> <img  src="{% static 'image/stocks.png' %}" alt="">&nbsp;<span>Stock</span> </a> </li>
+		{% if user.profile.grade == 'gerant' %}
+		<li><a href="{% url 'creer_commande' %}"><img src="{% static 'image/commande.png' %}" alt="">&nbsp; <span>Commandes</span></a> </li>
+		<li ><a  href="{% url 'fournisseurs' %}"><img src="{% static 'image/fournisseurs.png' %}" alt="">&nbsp;<span>Fournisseurs</span></a></li>
+		<li><a href="{% url 'agents' %}"><img src="{% static 'image/user.png' %}" alt="">&nbsp;<span>utilisateurs</span></a></li>
+		{% endif %}
+
+		<li><a href="{% url 'clients' %}"><img src="{% static 'image/client.png' %}" alt="">&nbsp;<span>Patients</span></a></li>
+		<li><a href="{% url 'ajouter_vente' %}"><img src="{% static 'image/vente.png' %}"  alt="notfound">&nbsp;<span>Ventes</span></a></li>
+		<li><a href="{% url 'creer_facture' %}"><img src="{% static 'image/facture.png' %}" alt="">&nbsp;<span>Factures</span></a></li>
+		<li><a href="{%  url 'logout' %}"><img src="{% static 'image/logout.png' %}" alt="">&nbsp;<span>se deconnecter</span></a></li>
+
+	</ul>
+ </div>  
+ <div class="container1">
+	<div class="header1">
+		<div class="nav1">
+			<div class="search" >
+				{% if user.profile.grade == 'gerant' %}
+
+			   <a href="{%  url 'menu' %}"class="btn">tableau de bord</a>
+			   {% endif %}
+			</div>
+
+			<div class="user">
+				<a href="{%  url 'logout' %}"class="btn">
+				   <span> se deconnecter</span>
+				</a>
+
+
+
+				<div class="notification-icon" id="notification-icon">
+					<img id="notification-icon" src="{% static 'image/notification.png' %}" width="30px" height="30px" alt="Notifications">
+
+					<span class="notification-badge" id="notification-badge" ></span>
+				  </div>
+				  
+
+
+				
+				  
+
+
+
+				<div class="img-case">
+					<img src="{% static 'image/pharmacist.png' %}" alt="">
+				</div>
+			</div>
+			<p> {{ full_name }}</p>
+
+		</div>
+	</div>
+ </div>
+<!-- Conteneur des notifications -->
+<div class="notification-container" id="notification-container"></div>
+
+
+</body>
+<script>// Récupérer l'URL de la page actuelle
+var url = window.location.href;
+
+// Récupérer tous les liens du menu de navigation
+var links = document.querySelectorAll('.side-menu li a');
+
+// Parcourir tous les liens
+for (var i = 0; i < links.length; i++) {
+  var link = links[i];
+
+  // Vérifier si l'URL du lien correspond à l'URL de la page actuelle
+  if (link.href === url) {
+	// Ajouter la classe "active" au lien correspondant
+	link.classList.add('active');
+	break; // Sortir de la boucle, car on a trouvé le lien correspondant
+  }
+}
+</script>
+<script>
+    // Fonction pour récupérer et afficher les notifications
+    function fetchNotifications() {
+      fetch('/notifications/ajax/')
+        .then(response => response.json())
+        .then(data => {
+          const notificationContainer = document.getElementById('notification-container');
+          const notificationBadge = document.getElementById('notification-badge');
+  
+          // Afficher le nombre de notifications dans le badge
+          notificationBadge.innerText = data.length;
+  
+          // Créer la liste des notifications
+          const ul = document.createElement('ul');
+          ul.classList.add('notification-list');
+  
+          data.forEach(notification => {
+            const li = document.createElement('li');
+            li.innerHTML = `<strong>${notification.title}</strong>: ${notification.message}`;
+            ul.appendChild(li);
+          });
+  
+          // Vider le conteneur et afficher la liste des notifications
+          notificationContainer.innerHTML = '';
+          notificationContainer.appendChild(ul);
+  
+          // Afficher le conteneur des notifications
+         // notificationContainer.style.display = 'block';
+        })
+        .catch(error => {
+          console.error('Erreur lors de la récupération des notifications :', error);
+        });
+    }
+  
+    // Chargement initial du nombre de notifications
+    fetchNotifications();
+  
+    // Gestionnaire d'événement pour le clic sur l'icône de notification
+    const notificationIcon = document.getElementById('notification-icon');
+    notificationIcon.addEventListener('click', function() {
+      const notificationContainer = document.getElementById('notification-container');
+  
+      if (notificationContainer.style.display === 'block') {
+        // Masquer le conteneur des notifications
+        notificationContainer.style.display = 'none';
+      } else {
+        // Afficher le conteneur des notifications
+        notificationContainer.style.display = 'block';
+        // Charger et afficher les notifications
+        fetchNotifications();
+      }
+    });
+  </script>
+
+</html>
+
+
+
+
+

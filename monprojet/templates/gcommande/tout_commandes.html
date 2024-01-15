@@ -1,0 +1,234 @@
+{% load static%}
+
+{% include 'parties/nav.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+       
+
+        *{padding: 0;
+        margin: 0;
+    box-sizing: border-box;
+font-family: 'Poppins',sans-serif;}
+body{
+    min-height: 100vh;
+}
+a{text-decoration: none;}
+
+h1,h2{color: #444;}
+
+.container{
+    position: absolute;
+    right: 0;
+    width: 80vw;
+    height: 100vh;
+    background: #f1f1f1;
+}
+.container .header{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80vw;
+    height: 10vh;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+
+}
+
+
+
+.btn{
+   
+    background-color: #3baea0;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+
+}
+.btn:hover{
+   
+   color: #3baea0;
+   background: rgb(255, 255, 255);
+   padding: 3px 8px;
+   border: 2px solid #3baea0;
+
+}
+.btn1{
+   
+   color: #3baea0;
+   background: rgb(255, 255, 255);
+   padding: 3px 8px;
+   border: 2px solid #3baea0;
+
+}
+.btn1:hover{
+   
+   background-color: #3baea0;
+   color: white;
+   padding: 5px 10px;
+   text-align: center;
+
+}
+.container .content{
+    position: relative;
+    margin-top: 10vh;
+    min-height: 90vh;
+    background: #f1f1f1;
+}
+.container .content .cards{
+    padding: 20px 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.container .content .cards .card{
+    padding:5px ;
+    width: 245px;
+    height: 145px;
+    background: white;
+    margin: 20px 10px ;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+}
+h3{color: #999;}
+.container .content .content-2{
+    min-height: 60vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+.container .content .content-2 .recent-payments{
+    min-height: 50vh;
+    flex: 4;
+    background: white;
+    margin: 0 25px 25px 25px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    display: flex;
+    flex-direction: column;
+
+}
+
+.container .content .content-2 .new-student{
+flex: 3;
+background: white;
+min-height: 50vh;
+margin: 23px 90px;
+box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+display: flex;
+flex-direction: column;
+}
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 15px 10px;
+    border-bottom: 2px solid #999;
+}
+.side-menu li img{width: 30px;height: 30px;}
+
+th,td{text-align: center;
+    padding: 8px 36px;
+}
+.container .content .content-2 .recent-students table td:nth-child(1) img {
+    width: 40px;
+    height: 40px;
+}
+table{
+width: 900px; }
+ table th{ 
+    color: white;
+         background:#40E0D0;
+            position: sticky;
+            top: 0;
+                        }
+
+                          
+@media screen and (max-width:940px) {
+    
+    .container .content .content-2 .recent-payments table th:nth-child(2),
+    .container .content .content-2 .recent-payments table th:nth-child(2){ 
+        display: none;
+    }
+}
+
+    
+    @media screen and (max-width:536px) {
+    
+    .container .content .cards {
+justify-content: center;}}
+.table-container2 {
+    height: 475px;
+overflow: auto;
+
+
+  }
+    </style>
+   
+ <div class="container">
+  
+<div class="content">
+    
+        <div class="content-2">
+
+<div class="new-student">
+    <div class="title">
+        <h2> tous les commandes</h2>
+    </div>
+    <div class="table-container2">
+    <table>
+        <tr>
+            <th>Num commande</th>
+            <th>date commande </th>
+            <th>fournisseur</th>
+            <th>detail de commande</th>
+
+            
+        </tr>
+        {% for x in cmd %}
+
+        <tr>
+            <td> {{x.id }}</td>
+            <td>{{x.date_commande}}</td>
+            <td>{{x.fournisseur}}</td>
+           <td> <a href="{% url 'afficher_commande' commande_id=x.id %}" class="btn1">voir plus de details</a> </td>
+
+        </tr>
+        {% endfor  %}
+    </table>
+</div>
+</div>
+       
+    </div>
+</div>
+
+
+
+ </div> 
+ 
+
+
+
+
+
+</body>
+</html>
+{% endblock content %}
